@@ -1,0 +1,1 @@
+<p>Pas encore de compte&thinsp;? <a href="./?inscription">S'inscrire.</a></p>

@@ -1,0 +1,454 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Tillana:wght@400;700&display=swap');
+@font-face {
+    font-family: 'Font-Awesome';
+    src: url('./fonts/fontawesome-webfont.eot'),
+         /* url('./fonts/fontawesome-webfont.svg'), */
+         url('./fonts/fontawesome-webfont.ttf'),
+         url('./fonts/fontawesome-webfont.woff'),
+         url('./fonts/fontawesome-webfont.woff2'),
+         url('./fonts/FontAwesome.otf');
+}
+
+:root {
+    --red1: rgba(255,0,0,1);
+    --white1: rgba(255,255,255,1);
+    --yellow1: rgba(255,215,0,1);
+    --yellow2: rgba(255,255,100,.4);
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+    text-align: center;
+    margin-top: 0;
+}
+
+p {
+    margin: 0 0 1em 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+li:last-child {
+    margin-bottom: 0;
+}
+
+li > a {
+    color: initial;
+}
+
+a {
+    text-decoration: none;
+}
+
+i {
+    font-family: 'Font-Awesome';
+    font-style: normal;
+}
+
+button {
+    all: unset;
+    background-color: lightblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+	border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    touch-action: none;
+    transition: transform .15s ease-in-out;
+}
+
+button:hover {
+    box-shadow:
+        1px 1px 1px lightgray,
+        -1px -1px 1px lightgray;
+}
+
+button:active {
+    transform: scale(.975, .925);
+}
+
+/* =========================
+========= EN-TÊTE ==========
+========================= */
+
+header {
+    margin: 0 0 2.5rem 0;
+}
+
+#top-banner *,
+#titles * {
+    color: var(--white1);
+}
+
+/* Haut de l'en-tête */
+
+#top-banner {
+    background-color: var(--red1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#top-banner a {
+    text-align: center;
+    width: 100%;
+    display: block;
+    padding: .4em 1em;
+}
+
+/* Nav (gauche) */
+
+nav i {
+    padding: .4em 1em;
+    display: none;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav li:hover,
+nav a:hover {
+    background-color: blue;
+}
+
+nav a {
+    text-transform: uppercase;
+}
+
+/* Compte (droite) */
+
+#account ul {
+    display: flex;
+    align-items: flex-end;
+}
+
+/* Titres */
+
+#titles {
+    background-color: var(--yellow1);
+    padding: .5em .225em;
+}
+
+#titles img {
+    max-width: 500px;
+}
+
+#titles h1 { /* alt du l'image du logo */
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: .25em;
+}
+
+#titles h2 {
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* =========================
+======== PRINCIPAL =========
+========================= */
+
+main {
+    margin: 0 3em 33vh 3em;
+}
+
+/* Slider */
+
+#upcoming {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#carousel {
+    margin-bottom: 1.5em;
+}
+
+#carousel img:not(img:first-child) {
+    display: none;
+}
+
+/* Books selection */
+
+#books-selection {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .75em;
+    margin-bottom: 1em;
+
+}
+
+.book {
+    border: 1px solid black;
+    padding: .5em;
+    border-radius: 5px;
+}
+
+/* Book Page */
+
+#book-page-main {
+	padding: 1em;
+    margin-bottom: 1.5em;
+	border: 1px solid #000;
+	border-radius: 5px;
+	display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#book-page-main > * {
+    padding: .5em;
+}
+
+#book-page-main .illustration,
+#book-page-main .book-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#book-page-main .illustration,
+#book-page-main .illustration img {
+    max-width: 100%;
+}
+
+#book-page-main .book-suggestions {
+    grid-column: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add_to_cart {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.add_to_cart button {
+    width: 100%;
+	font-size: 1.2em;
+    font-weight: 700;
+	padding: 1em;
+	color: #eee;
+	background-color: #00ff00;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#view-comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+/* =========================
+========== FOOTER ==========
+========================= */
+
+footer {
+    margin-top: auto;
+    padding: 1em;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1.5em;
+    background-color: var(--yellow2);
+}
+
+footer h3 {
+    margin-bottom: .5em;
+}
+
+footer ul,
+footer address {
+    margin-left: 33.33%;
+}
+
+footer li {
+    margin-bottom: .33em;
+}
+
+address {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+}
+
+address li {
+    display: block;
+}
+
+/* =========================
+========== FORMS ===========
+========================= */
+
+form {
+    width: 50%;
+    margin: 0 auto;
+    padding: 1.5em .75em 0 .75em;
+    border-radius: 5px;
+}
+
+label:not(label:last-child) {
+    display: block;
+    margin-bottom: .33em;
+}
+
+input:not(input[type="checkbox"]) {
+    width: 100%;
+}
+
+input[type="checkbox"] {
+    margin-right: .5em;
+}
+
+select {
+    width: 50%;
+}
+
+textarea {
+    width: 100%;
+}
+
+.form-field {
+    margin-bottom: 1em;
+}
+
+.form-submit {
+    padding: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact-form {
+    background: blue;
+    background: linear-gradient(to bottom right, rgb(0,10,255), rgb(0,50,255), rgb(0,100,255));
+    color: #fff;
+}
+
+#register-form {
+    border: 1px solid;
+}
+
+/* =========================
+========= CLASSES ==========
+========================= */
+
+.gradient-wrapper {
+    background: #000; /* For browsers that don't support gradients. */
+    background: linear-gradient(to bottom right, rgb(255, 220, 0), rgb(255, 180, 0), rgb(255, 100, 0), rgb(255, 0, 0));
+    padding: 1px;
+    margin-bottom: 1em;
+}
+
+.gradient-wrapper > p {
+    background: #fff;
+    padding: 1em;
+    margin-bottom: 0;
+}
+
+.border-radius-1 {
+    border-radius: 5px;
+}
+
+.flash-error {
+    animation: fadeOut 10s linear 10s forwards;
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1}
+    100% {opacity: 0; height: 0; cursor: default;}
+}
+
+/* =========================
+====== MEDIA QUERIES =======
+========================= */
+
+@media screen and (max-width: 992px) {
+    #top-banner nav i {
+        display: initial;
+    }
+
+    #top-banner nav ul {
+        display: none;
+        flex-direction: column;
+    }
+
+    #top-banner nav li {
+        align-items: flex-start;
+    }
+    
+    #top-banner nav a {
+        text-align: left;
+    }
+
+    /* ===== ===== */
+
+    main {
+        margin: 0 1em 33vh 1em;
+    }
+
+    main p {
+        font-size: .9em;
+    }
+
+    footer, #books-selection, #book-page-main {
+        grid-template-columns: 1fr;
+    }
+
+    /* ===== ===== */
+    
+    #book-page-main .book-suggestions {
+        grid-column: auto;
+    }
+
+    /* ===== ===== */
+
+    .form {
+        width: 100%;
+    }
+    
+    /* ===== ===== */
+
+    footer ul,
+    footer address {
+        margin-left: 0;
+    }
+}
