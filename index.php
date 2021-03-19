@@ -43,6 +43,10 @@
         
         require './pages/inscription.php';
 
+    } else if(isset($_GET["confirmer-email"])) {
+
+        require './processing/verify.php';
+
     } else { ?>
 
     <main>

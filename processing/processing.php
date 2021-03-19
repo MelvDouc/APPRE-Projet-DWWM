@@ -1,8 +1,8 @@
 <?php
 
 session_start();
-require_once './db.php';
-date_default_timezone_set('Europe/Paris');
+require_once "./db.php";
+date_default_timezone_set("Europe/Paris");
 
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
@@ -154,7 +154,7 @@ else if(isset($_GET["register"])) {
 										$pwd = password_hash($pwd, PASSWORD_DEFAULT);
 										$first_name = ucfirst($first_name);
 										$last_name = strtoupper($last_name);
-										$cle_verif = 1;
+										$cle_verif = md5(time().$username);
 										$etat_verif = 0;
 
 										$req->bindParam(":adresse_email", $email_address, PDO::PARAM_STR);
@@ -162,12 +162,51 @@ else if(isset($_GET["register"])) {
 										$req->bindParam(":mot_de_passe", $pwd, PDO::PARAM_STR);
 										$req->bindParam(":prenom", $first_name, PDO::PARAM_STR);
 										$req->bindParam(":nom_de_famille", $last_name, PDO::PARAM_STR);
-										$req->bindParam(":cle_verif", $cle_verif, PDO::PARAM_INT);
+										$req->bindParam(":cle_verif", $cle_verif, PDO::PARAM_STR);
 										$req->bindParam(":etat_verif", $etat_verif, PDO::PARAM_INT);
 
 										$req->execute();
 
 										header("Location: ../");
+
+										//
+
+										require '../vendor/autoload.php';
+										$mail = new PHPMailer(true);
+
+										try {
+											//Server settings
+											$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+											$mail->isSMTP();
+											$mail->Host       = 'smtp.gmail.com';
+											$mail->SMTPAuth   = true;
+											$mail->Username   = 'melv.douc@gmail.com';
+											$mail->Password   = 'wuxugpwysvlsjoox';
+											$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+											$mail->Port       = 587;
+
+											$mail->setFrom("ne-pas-repondre@alpha-betise.fr", "Alpha-Betise");
+											$mail->addAddress($email_address, "$first_name $last_name");
+											$mail->addBCC("melv.douc@gmail.com");
+											// $mail->addReplyTo('melv.douc@gmail.com', 'Information');
+
+											$mail->isHTML(true);
+											$mail->Subject = "Vérifiez votre compte";
+											$mail->Body = "Bonjour $username,<br><br>
+											Veuillez suivre le lien suivant pour valider<br><br>
+											http://localhost/appre-projet-dwwm?confirmer-email&cle-verif=$cle_verif<br><br>
+											";
+											// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+											$mail->CharSet = "UTF-8";
+											$mail->send();
+											echo "Message envoyé !";
+										} catch (Exception $e) {
+											echo "Erreur à l'envoi du message. Plus d'infos : {$mail->ErrorInfo}";
+										}
+
+										die();
+
 									}
 								}
 							}
