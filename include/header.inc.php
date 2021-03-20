@@ -1,12 +1,12 @@
 <header>
-    <div id="top-banner">
+    <div id="bandeau-superieur">
         <div>
 
             <nav>
-                <i class="fas fa-bars"></i>
+                <i class="bi bi-list"></i>
                 <ul>
                     <li>
-                        <a href="./">Accueil</a>
+                        <a href="./?accueil">Accueil</a>
                     </li>
 
                     <li>
@@ -29,17 +29,21 @@
             </nav>
         </div>
 
-        <div id="account">
+        <div id="compte">
             <ul>
                 <li>
-                    <a href="./?connexion">S'inscrire / Se connecter</a>
+                    <?php if(isset($_SESSION["connexion-utilisateur"]) && $_SESSION["connexion-utilisateur"]) { ?>
+                        <a href="./?profil&utilisateur=<?= $_SESSION["utilisateur"] ?>">Mon compte</a>
+                    <?php } else { ?>
+                        <a href="./?connexion">S'inscrire / Se connecter</a>
+                    <?php } ?>
                 </li>
             </ul>
         </div>
     </div>
 
-    <div id="titles">
-        <a href="./">
+    <div id="titres">
+        <a href="./?accueil">
             <h1>
                 <img src="./assets/img/logo/logo-c-h.svg" alt="L'Alpha-Bêtise">
             </h1>

@@ -1,20 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap'); */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Tillana:wght@400;700&display=swap');
-@font-face {
-    font-family: 'Font-Awesome';
-    src: url('./fonts/fontawesome-webfont.eot'),
-         /* url('./fonts/fontawesome-webfont.svg'), */
-         url('./fonts/fontawesome-webfont.ttf'),
-         url('./fonts/fontawesome-webfont.woff'),
-         url('./fonts/fontawesome-webfont.woff2'),
-         url('./fonts/FontAwesome.otf');
-}
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
 
 :root {
+    --lightGray: #eee;
     --red1: rgba(255,0,0,1);
     --white1: rgba(255,255,255,1);
     --yellow1: rgba(255,215,0,1);
     --yellow2: rgba(255,255,100,.4);
+    
+    --mainMinHeight: 50vh;
+
+    --fadeOut: fadeOut 10s linear 10s forwards;
 }
 
 * {
@@ -25,12 +22,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3, h4 {
@@ -93,24 +90,24 @@ button:active {
 ========================= */
 
 header {
-    margin: 0 0 2.5rem 0;
+    margin: 0;
 }
 
-#top-banner *,
-#titles * {
+#bandeau-superieur *,
+#titres * {
     color: var(--white1);
 }
 
 /* Haut de l'en-tête */
 
-#top-banner {
+#bandeau-superieur {
     background-color: var(--red1);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-#top-banner a {
+#bandeau-superieur a {
     text-align: center;
     width: 100%;
     display: block;
@@ -148,29 +145,29 @@ nav a {
 
 /* Compte (droite) */
 
-#account ul {
+#compte ul {
     display: flex;
     align-items: flex-end;
 }
 
 /* Titres */
 
-#titles {
+#titres {
     background-color: var(--yellow1);
     padding: .5em .225em;
 }
 
-#titles img {
+#titres img {
     max-width: 500px;
 }
 
-#titles h1 { /* alt du l'image du logo */
+#titres h1 { /* alt du l'image du logo */
     font-weight: bold;
     font-size: 2.5rem;
     margin-bottom: .25em;
 }
 
-#titles h2 {
+#titres h2 {
     font-weight: 400;
     font-size: 1rem;
     text-transform: uppercase;
@@ -182,12 +179,13 @@ nav a {
 ========================= */
 
 main {
-    margin: 0 3em 33vh 3em;
+    min-height: var(--mainMinHeight);
+    padding: 2em 3em;
 }
 
 /* Slider */
 
-#upcoming {
+#evenements-futurs {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,7 +201,7 @@ main {
 
 /* Books selection */
 
-#books-selection {
+#selection-livres {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: .75em;
@@ -211,7 +209,7 @@ main {
 
 }
 
-.book {
+.livre {
     border: 1px solid black;
     padding: .5em;
     border-radius: 5px;
@@ -219,7 +217,7 @@ main {
 
 /* Book Page */
 
-#book-page-main {
+#fiche-livre {
 	padding: 1em;
     margin-bottom: 1.5em;
 	border: 1px solid #000;
@@ -228,38 +226,38 @@ main {
     grid-template-columns: 1fr 1fr;
 }
 
-#book-page-main > * {
+#fiche-livre > * {
     padding: .5em;
 }
 
-#book-page-main .illustration,
-#book-page-main .book-details {
+#fiche-livre .illustration,
+#fiche-livre .details-livre {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-#book-page-main .illustration,
-#book-page-main .illustration img {
+#fiche-livre .illustration,
+#fiche-livre .illustration img {
     max-width: 100%;
 }
 
-#book-page-main .book-suggestions {
+#fiche-livre .suggestions-livres {
     grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.add_to_cart {
+.ajouter-panier {
     width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
 }
 
-.add_to_cart button {
+.ajouter-panier button {
     width: 100%;
 	font-size: 1.2em;
     font-weight: 700;
@@ -271,7 +269,7 @@ main {
 	align-items: center;
 }
 
-#view-comments {
+#voir-commentaires {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -320,7 +318,7 @@ address li {
 
 form {
     width: 50%;
-    margin: 0 auto;
+    margin: 0 auto 1.5em auto;
     padding: 1.5em .75em 0 .75em;
     border-radius: 5px;
 }
@@ -346,39 +344,109 @@ textarea {
     width: 100%;
 }
 
-.form-field {
+.champ-formulaire {
     margin-bottom: 1em;
 }
 
-.form-submit {
+.validation-formulaire {
     padding: 1.5em;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#contact-form {
+.champ-requis::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+#formulaire-contact {
     background: blue;
     background: linear-gradient(to bottom right, rgb(0,10,255), rgb(0,50,255), rgb(0,100,255));
     color: #fff;
 }
 
-#register-form {
+#formulaire-inscription {
     border: 1px solid;
+}
+
+/*  */
+
+#reinit-mdp {
+    font-size: .9em;
+}
+
+#p-connexion {
+    text-align: center;
+}
+
+/* =========================
+============================
+========================= */
+
+#notif-creation-compte {
+    /* min-height: 375px; */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: url("../img/icons/email.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25%;
+}
+
+#notif-creation-compte p {
+    text-align: center;
+    font-weight: 600;
+    margin: 0;
+    padding: .75em;
+    /* background-color: rgba(255,255,255,.75); */
+    background-color: var(--yellow1);
+}
+
+#notif-creation-compte p:first-child {
+    margin-bottom: 2em;
+}
+
+/* =========================
+============================
+========================= */
+
+.acces-refuse {
+    min-height: var(--mainMinHeight);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--lightGray);
+}
+
+.acces-refuse p {
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-family: Consolas, 'Courier New', Courier, monospace;
 }
 
 /* =========================
 ========= CLASSES ==========
 ========================= */
 
-.gradient-wrapper {
+.centrer-texte {
+    text-align: center;
+}
+
+.conteneur-degrade {
     background: #000; /* For browsers that don't support gradients. */
     background: linear-gradient(to bottom right, rgb(255, 220, 0), rgb(255, 180, 0), rgb(255, 100, 0), rgb(255, 0, 0));
     padding: 1px;
     margin-bottom: 1em;
 }
 
-.gradient-wrapper > p {
+.conteneur-degrade > p {
     background: #fff;
     padding: 1em;
     margin-bottom: 0;
@@ -388,13 +456,25 @@ textarea {
     border-radius: 5px;
 }
 
-.flash-error {
-    animation: fadeOut 10s linear 10s forwards;
+.message-erreur {
+    animation: var(--fadeOut);
+}
+
+.message-succes {
+    color: rgb(11, 145, 11);
+    font-weight: 600;
+    animation: var(--fadeOut);
 }
 
 @keyframes fadeOut {
-    0% {opacity: 1}
-    100% {opacity: 0; height: 0; cursor: default;}
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        height: 0;
+        cursor: default;
+    }
 }
 
 /* =========================
@@ -402,49 +482,61 @@ textarea {
 ========================= */
 
 @media screen and (max-width: 992px) {
-    #top-banner nav i {
-        display: initial;
+    #bandeau-superieur nav i {
+        display: block;
     }
 
-    #top-banner nav ul {
+    #bandeau-superieur nav ul {
         display: none;
         flex-direction: column;
     }
 
-    #top-banner nav li {
+    #bandeau-superieur nav li {
         align-items: flex-start;
     }
     
-    #top-banner nav a {
+    #bandeau-superieur nav a {
         text-align: left;
     }
 
     /* ===== ===== */
 
     main {
-        margin: 0 1em 33vh 1em;
+        padding: 1em;
     }
 
     main p {
         font-size: .9em;
     }
 
-    footer, #books-selection, #book-page-main {
+    footer, #selection-livres, #fiche-livre {
         grid-template-columns: 1fr;
     }
 
     /* ===== ===== */
     
-    #book-page-main .book-suggestions {
+    #fiche-livre .suggestions-livres {
         grid-column: auto;
     }
 
     /* ===== ===== */
 
-    .form {
+    form {
         width: 100%;
     }
+
+    /* ===== ===== */
     
+    #notif-creation-compte {
+        background-size: 50%;
+    }
+
+    /* ===== ===== */
+    
+    .acces-refuse p {
+        font-size: 3em;
+    }
+
     /* ===== ===== */
 
     footer ul,

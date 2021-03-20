@@ -2,8 +2,8 @@
 
 // Variables
 
-const navIcon = document.querySelector("nav i"),
-    navList = document.querySelector("nav ul"),
+const iconeNavigation = document.querySelector("nav i"),
+    listeNavigation = document.querySelector("nav ul"),
     carousel = document.getElementById("carousel");
 
 const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -12,37 +12,37 @@ const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + mi
 // Header nav
 // ====================
 
-function displayNavMenu() {
-    switch (navIcon.className) {
-        case "fas fa-bars":
-            navIcon.className = "fas fa-times";
+function afficherMenuNavigation() {
+    switch (iconeNavigation.className) {
+        case "bi bi-list":
+            iconeNavigation.className = "bi bi-x-circle";
             break;
-        case "fas fa-times":
-            navIcon.className = "fas fa-bars";
+        case "bi bi-x-circle":
+            iconeNavigation.className = "bi bi-list";
             break;
     }
-    let navListDisplayVal = getComputedStyle(navList).getPropertyValue("display");
-    navList.style.display = (navListDisplayVal === "none") ? "initial" : "none";
+    let listeNavigationDisplayVal = getComputedStyle(listeNavigation).getPropertyValue("display");
+    listeNavigation.style.display = (listeNavigationDisplayVal === "none") ? "block" : "none";
 }
 
-navIcon.addEventListener("click", displayNavMenu);
+iconeNavigation.addEventListener("click", afficherMenuNavigation);
 
 // ====================
 // Carousel
 // ====================
 
 // let index = -1;
-// function slideThrough() {
+// function defilerCarousel() {
 //     index = ++index % carouselImages.length; // 0 1 2 3 4, 0 1 2...
 //     carousel.insertAdjacentElement("beforeend", carouselImages[index]);
 // }
 
-function slideThrough() {
+function defilerCarousel() {
     let carouselImages = document.querySelectorAll("#carousel img");
     carousel.insertAdjacentElement("beforeend", carouselImages[0]);
 }
 
-// setInterval(slideThrough, 5000);
+// setInterval(defilerCarousel, 5000);
 
 // ====================
 // 

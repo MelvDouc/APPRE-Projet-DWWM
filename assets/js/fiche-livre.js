@@ -2,20 +2,20 @@
 // Display customer comments
 // ====================
 
-const viewCommentsButton = document.querySelector("#view-comments > button");
+const boutonVoirCommentaires = document.querySelector("#voir-commentaires > button");
 
-const toggleComments = () => {
-    const customerComments = document.getElementById("customer-comments");
-    switch (customerComments.style.display) {
+const basculerCommentaires = () => {
+    const commentairesClients = document.getElementById("commentaires-clients");
+    switch (commentairesClients.style.display) {
         case "none":
-            customerComments.style.display = "initial";
-            viewCommentsButton.innerText = "Cacher les commentaires clients";
+            commentairesClients.style.display = "initial";
+            boutonVoirCommentaires.innerText = "Cacher les commentaires clients";
             break;
         case "initial":
-            customerComments.style.display = "none";
-            viewCommentsButton.innerText = "Voir les commentaires clients";
+            commentairesClients.style.display = "none";
+            boutonVoirCommentaires.innerText = "Voir les commentaires clients";
             break;
     }
 }
 
-viewCommentsButton.addEventListener("click", toggleComments);
+boutonVoirCommentaires.addEventListener("click", basculerCommentaires);
