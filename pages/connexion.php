@@ -19,6 +19,10 @@
             case 4:
                 $message_erreur = "Vous devez d'abord vérifier votre compte pour vous connecter. Suivez le lien indiqué dans le mail de vérification envoyé à la création du compte.";
                 break;
+            // voir mon-panier.php
+            case 5:
+                $message_erreur = "Vous devez d'abord vous connecter pour accéder à votre panier.";
+                break;
             default:
                 $message_erreur = "";
                 break;
@@ -35,27 +39,19 @@
 
     <h2>Connexion</h2>
 
-    <form action="./traitement/traitement.php?connexion" method="POST" id="formulaire-connexion">
-    
-        <div class="champ-formulaire">
-            <label for="id_connexion">Nom d'utilisateur ou adresse email</label>
-            <input type="text" id="id_connexion" name="id_connexion">
-        </div>
-
-        <div class="champ-formulaire">
-            <label for="mdp">Mot de passe</label>
-            <input type="password" id="mdp" name="mdp">
-        </div>
+    <div class="contenu">
+        <form action="./traitement/traitement.php?connexion" method="POST" id="formulaire-connexion">
         
-        <p id="reinit-mdp">Mot de passe oublié ? <a href="./?reinit-mdp">Réinitialiser.</a></p>
-
-        <div class="validation-formulaire">
-            <button type="submit">Valider</button>
-        </div>
-
-    </form>
-
-    <p id="p-connexion">Pas encore de compte&thinsp;? <a href="./?inscription">S'inscrire.</a></p>
+            <!-- javascript -->
+            
+            <p id="reinit-mdp">Mot de passe oublié ? <a href="./?reinit-mdp">Réinitialiser.</a></p>
+    
+            <!-- javascript -->
+    
+        </form>
+    
+        <p id="p-connexion">Pas encore de compte&thinsp;? <a href="./?inscription">S'inscrire.</a></p>
+    </div>
 
 <?php
     } else {

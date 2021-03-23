@@ -5,15 +5,8 @@
         <h2>Réinitialiser le mot de passe</h2>
 
         <form action="./traitement/traitement.php?reinit-mdp" method="POST" id="formulaire-reinit">
-    
-            <div class="champ-formulaire">
-                <label for="courriel">Votre adresse email</label>
-                <input type="email" id="courriel" name="courriel" required>
-            </div>
 
-            <div class="validation-formulaire">
-                <button type="submit">Valider</button>
-            </div>
+            <!-- javascript -->
 
         </form>
 

@@ -86,19 +86,17 @@ if(isset($_GET["contact"])) {
 
 else if(isset($_GET["inscription"])) {
 
-	$prenom = $_POST["prenom"];
-	$nom_de_famille = $_POST["nom_de_famille"];
 	$pseudo = $_POST["pseudo"];
 	$courriel = $_POST["courriel"];
 	$mdp = $_POST["mdp"];
 	$confirmation_mdp = $_POST["confirmation_mdp"];
 	$termes = (isset($_POST["termes"]) && $_POST["termes"] === "true") ? true : false;
 
-	if(strlen($prenom) === 0 || strlen($nom_de_famille) === 0 || strlen($pseudo) === 0 || strlen($courriel) === 0 || strlen($mdp) === 0 || strlen($confirmation_mdp) === 0) {
+	if(strlen($pseudo) === 0 || strlen($courriel) === 0 || strlen($mdp) === 0 || strlen($confirmation_mdp) === 0) {
 		header("Location: ../?inscription&erreur=1");
 		die();
 	} else {
-		if(!is_string($prenom) || !is_string($nom_de_famille) || !is_string($pseudo) || !is_string($courriel) || !is_string($mdp) || !is_string($confirmation_mdp)) {
+		if(!is_string($pseudo) || !is_string($courriel) || !is_string($mdp) || !is_string($confirmation_mdp)) {
 			header("Location: ../?inscription&erreur=2");
 			die();
 		} else {
@@ -135,7 +133,7 @@ else if(isset($_GET["inscription"])) {
 		
 								$erreurs_mdp = [];
 								foreach ($tests_mdp as $clef => $valeur) {
-									if($value === false || $valeur === 0) {
+									if($value == false || $valeur === 0) {
 										array_push($erreurs_mdp, $clef);
 									}
 								}
@@ -146,11 +144,11 @@ else if(isset($_GET["inscription"])) {
 									header("Location: ../?inscription&erreur=8&types=$types_erreurs");
 									die();
 								} else {
-									if ($terms === false) {
+									if ($terms == false) {
 										header("Location: ../?inscription&erreur=9");
 										die();
 									} else {
-										$req = $bdd->prepare("INSERT INTO utilisateurs (adresse_email, pseudo, mot_de_passe, prenom, nom_de_famille, cle_verif, etat_verif, date_creation) VALUES (:adresse_email, :pseudo, :mot_de_passe, :prenom, :nom_de_famille, :cle_verif, :etat_verif, NOW())");
+										$req = $bdd->prepare("INSERT INTO utilisateurs (adresse_email, pseudo, mot_de_passe, cle_verif, etat_verif, date_creation) VALUES (:adresse_email, :pseudo, :mot_de_passe, :cle_verif, :etat_verif, NOW())");
 
 										$mdp = password_hash($mdp, PASSWORD_DEFAULT);
 										$prenom = ucfirst($prenom);
@@ -161,8 +159,6 @@ else if(isset($_GET["inscription"])) {
 										$req->bindParam(":adresse_email", $courriel, PDO::PARAM_STR);
 										$req->bindParam(":pseudo", $pseudo, PDO::PARAM_STR);
 										$req->bindParam(":mot_de_passe", $mdp, PDO::PARAM_STR);
-										$req->bindParam(":prenom", $prenom, PDO::PARAM_STR);
-										$req->bindParam(":nom_de_famille", $nom_de_famille, PDO::PARAM_STR);
 										$req->bindParam(":cle_verif", $cle_verif, PDO::PARAM_STR);
 										$req->bindParam(":etat_verif", $etat_verif, PDO::PARAM_INT);
 
@@ -187,7 +183,7 @@ else if(isset($_GET["inscription"])) {
 											$mail->Port       = 587;
 
 											$mail->setFrom("ne-pas-repondre@alpha-betise.fr", "Alpha-Betise");
-											$mail->addAddress($courriel, "$prenom $nom_de_famille");
+											$mail->addAddress($courriel, "$pseudo");
 											$mail->addBCC("melv.douc@gmail.com");
 											// $mail->addReplyTo('melv.douc@gmail.com', 'Information');
 
@@ -232,7 +228,7 @@ else if(isset($_GET["connexion"])) {
 			die();
 		} else {
 			$req = $bdd->query("SELECT * FROM utilisateurs WHERE pseudo = '$id_connexion' OR adresse_email = '$id_connexion'")->fetch();
-			if($req === false) {
+			if($req == false) {
 				header("Location: ../?connexion&erreur=3");
 				die();
 			} else {
@@ -247,6 +243,7 @@ else if(isset($_GET["connexion"])) {
 						$utilisateur = $req["pseudo"];
 						$_SESSION["connexion-utilisateur"] = true;
 						$_SESSION["utilisateur"] = $utilisateur;
+					    $_SESSION["commande"] = [];
 						header("Location: ../?profil&utilisateur=$utilisateur");
 						die();
 					}
@@ -257,8 +254,8 @@ else if(isset($_GET["connexion"])) {
 }
 
 else if(isset($_GET["deconnexion"])) {
-	session_unset();
-	session_destroy();
+	unset($_SESSION["connexion-utilisateur"]);
+	unset($_SESSION["utilisateur"]);
 	header("Location: ../?accueil&connexion=deconnecte");
 	die();
 }
@@ -372,6 +369,54 @@ else if(isset($_GET["creation-nouveau-mdp"])) {
 	}
 }
 
+else if(isset($_GET["ajout-panier"])) {
+    $id_livre = $_POST["id_livre"];
+	array_push($_SESSION["commande"], (INT)$id_livre);
+    header("Location: ../?mon-panier");
+    die();
+}
+
+
+else if(isset($_GET["modifier-profil"])) {
+	$id = (INT)$_GET["id"];
+	$pseudo = $_POST["pseudo"];
+	$prenom = $_POST["prenom"];
+	$nom_de_famille = $_POST["nom_de_famille"];
+	$date_de_naissance = $_POST["date_de_naissance"];
+	$adresse_postale = $_POST["adresse_postale"];
+	$code_postal = $_POST["code_postal"];
+	$ville = $_POST["ville"];
+	$pays = $_POST["pays"];
+	
+	// $req = $bdd->query("SELECT pseudo, prenom, nom_de_famille, date_de_naissance, adresse_postale, code_postal, ville, pays FROM utilisateurs WHERE id = $id;")->fetch();
+	
+	if(strlen($pseudo) > 0 && preg_match('/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/', $pseudo) === 0) {
+		echo "pseudo invalide";
+		die();
+	} else {
+		if(strlen($date_de_naissance) > 0 && preg_match('/^(19|20)\d\d\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/', $date_de_naissance) === 0) {
+			echo "date de naissance invalide";
+			die();
+		} else {
+			if(strlen($code_postal) > 0 && !is_numeric($code_postal)) {
+				echo "code postal invalide";
+				die();
+			}
+		}
+	}
+}
+
+// else if() {
+
+// }
+
+// else if() {
+
+// }
+
+// else if() {
+
+// }
 
 // else if() {
 

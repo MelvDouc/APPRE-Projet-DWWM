@@ -54,6 +54,10 @@
 
         require "./pages/profil.php";
 
+    } else if(isset($_GET["modifier-profil"])) {
+
+        require "./pages/modifier-profil.php";
+
     } else if(isset($_GET["confirmer-email"])) {
 
         require "./traitement/valider-compte.php";
@@ -65,6 +69,10 @@
     } else if(isset($_GET["creer-nouveau-mot-de-passe"])) {
 
         require "./traitement/creer-nouveau-mdp.php";
+
+    } else if(isset($_GET["mon-panier"])) {
+
+        require "./pages/mon-panier.php";
 
     } else if(isset($_GET["confirmation-envoi-lien-reinitialisation-mot-de-passe"])) {
 

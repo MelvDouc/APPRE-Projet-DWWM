@@ -57,50 +57,20 @@
 
 <h2>Inscription</h2>
 
-<form action="./traitement/traitement.php?inscription" method="POST" id="formulaire-inscription">
-
-    <div class="champ-formulaire">
-        <label for="prenom">Prénom</label>
-        <input type="text" id="prenom" name="prenom" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <label for="nom_de_famille">Nom de famille</label>
-        <input type="text" id="nom_de_famille" name="nom_de_famille" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <label for="pseudo">Nom d'utilisateur</label>
-        <input type="text" id="pseudo" name="pseudo" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <label for="courriel">Adresse email</label>
-        <input type="email" id="courriel" name="courriel" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <label for="mdp">Mot de passe</label>
-        <input type="password" id="mdp" name="mdp" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <label for="confirmation_mdp">Confirmer mot de passe</label>
-        <input type="password" id="confirmation_mdp" name="confirmation_mdp" required>
-    </div>
-
-    <div class="champ-formulaire">
-        <input type="checkbox" id="termes" name="termes" value="true">
-        <label for="termse">J'ai lu et accepté les conditions d'utilisation.</label>
-    </div>
-
-    <div class="validation-formulaire">
-        <button type="submit">Valider</button>
-    </div>
-
-</form>
-
-<p class="centrer-texte">Vous déjà un compte&thinsp;? <a href="./?connexion">Se connecter.</a></p>
+<div class="contenu">
+    <form action="./traitement/traitement.php?inscription" method="POST" id="formulaire-inscription">
+    
+        <!-- javascript -->
+    
+        <div class="champ-formulaire">
+            <input type="checkbox" id="termes" name="termes" value="true">
+            <label for="termse">J'ai lu et accepté les conditions d'utilisation.</label>
+        </div>
+    
+    </form>
+    
+    <p class="centrer-texte">Vous déjà un compte&thinsp;? <a href="./?connexion">Se connecter.</a></p>
+</div>
 
 <?php
     } else {

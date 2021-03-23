@@ -10,8 +10,12 @@ if(isset($_GET["cle-verif"])) {
 
 ?>
 
-    <p>Compte vérifié !</p>
-    <p>Vous pouvez à présent <a href="./?connexion">vous connecter à votre compte</a>.</p>
+    <div class="hauteur-100 flex-center" id="valider-compte">
+
+        <p>Compte vérifié !</p>
+        <p>Vous pouvez à présent <a href="./?connexion">vous connecter à votre compte</a>.</p>
+
+    </div>
 
 <?php
 

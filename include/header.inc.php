@@ -1,7 +1,6 @@
 <header>
     <div id="bandeau-superieur">
-        <div>
-
+        <div id="bandeau-superieur-gauche">
             <nav>
                 <i class="bi bi-list"></i>
                 <ul>
@@ -29,15 +28,23 @@
             </nav>
         </div>
 
-        <div id="compte">
+        <div id="bandeau-superieur-droit">
             <ul>
-                <li>
-                    <?php if(isset($_SESSION["connexion-utilisateur"]) && $_SESSION["connexion-utilisateur"]) { ?>
-                        <a href="./?profil&utilisateur=<?= $_SESSION["utilisateur"] ?>">Mon compte</a>
-                    <?php } else { ?>
-                        <a href="./?connexion">S'inscrire / Se connecter</a>
-                    <?php } ?>
-                </li>
+                <?php if (isset($_SESSION["connexion-utilisateur"]) && $_SESSION["connexion-utilisateur"]): ?>
+                    <li>
+                        <a href="./?mon-panier">Panier</a>
+                    </li>
+                    <li>
+                        <a href="./?profil&utilisateur=<?= $_SESSION["utilisateur"] ?>">Compte</a>
+                    </li>
+                <?php else: ?>
+                    <li>
+                        <a href="./?connexion">Connexion</a>
+                    </li>
+                    <li>
+                        <a href="./?inscription">Inscription</a>
+                    </li>
+                <?php endif ?>
             </ul>
         </div>
     </div>

@@ -35,7 +35,7 @@
     }
     ?>
 
-    <form action="./traitement/traitement.php?creation-nouveau-mdp" method="POST">
+    <form action="./traitement/traitement.php?creation-nouveau-mdp" method="POST" id="formulaire-nouveau-mdp">
 
         <input type="hidden" name="cle_mdp" value="<?= $cle_mdp ?>">
 
@@ -56,7 +56,6 @@
     </form>
 
 <?php } else {
-    // header("Location: ./?accueil");
-    // die();
-    var_dump($_GET);
+    header("Location: ./?accueil");
+    die();
 } ?>

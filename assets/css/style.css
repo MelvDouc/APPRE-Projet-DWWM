@@ -3,14 +3,13 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css");
 
 :root {
+    --blue1: rgb(0,50,255);
     --lightGray: #eee;
     --red1: rgba(255,0,0,1);
     --white1: rgba(255,255,255,1);
     --yellow1: rgba(255,215,0,1);
     --yellow2: rgba(255,255,100,.4);
     
-    --mainMinHeight: 50vh;
-
     --fadeOut: fadeOut 10s linear 10s forwards;
 }
 
@@ -35,6 +34,18 @@ h1, h2, h3, h4 {
     margin-top: 0;
 }
 
+main h2 {
+    font-size: 2rem;
+    padding: .5em;
+    border-radius: 3px;
+    background: linear-gradient(to right, rgb(84, 1, 143), rgb(126, 1, 217) 70%, rgb(84, 1, 143));
+    color: #fff;
+}
+
+h3 {
+    margin-bottom: 1em;
+}
+
 p {
     margin: 0 0 1em 0;
 }
@@ -48,16 +59,11 @@ li:last-child {
     margin-bottom: 0;
 }
 
-li > a {
-    color: initial;
-}
-
 a {
     text-decoration: none;
 }
 
 i {
-    font-family: 'Font-Awesome';
     font-style: normal;
 }
 
@@ -85,103 +91,19 @@ button:active {
     transform: scale(.975, .925);
 }
 
-/* =========================
-========= EN-TÊTE ==========
-========================= */
-
-header {
-    margin: 0;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
-#bandeau-superieur *,
-#titres * {
-    color: var(--white1);
-}
-
-/* Haut de l'en-tête */
-
-#bandeau-superieur {
-    background-color: var(--red1);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#bandeau-superieur a {
-    text-align: center;
-    width: 100%;
-    display: block;
-    padding: .4em 1em;
-}
-
-/* Nav (gauche) */
-
-nav i {
-    padding: .4em 1em;
-    display: none;
-}
-
-nav ul {
-    display: flex;
-    justify-content: space-around;
-}
-
-nav li {
-    width: 100%;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-nav li:hover,
-nav a:hover {
-    background-color: blue;
-}
-
-nav a {
-    text-transform: uppercase;
-}
-
-/* Compte (droite) */
-
-#compte ul {
-    display: flex;
-    align-items: flex-end;
-}
-
-/* Titres */
-
-#titres {
-    background-color: var(--yellow1);
-    padding: .5em .225em;
-}
-
-#titres img {
-    max-width: 500px;
-}
-
-#titres h1 { /* alt du l'image du logo */
-    font-weight: bold;
-    font-size: 2.5rem;
-    margin-bottom: .25em;
-}
-
-#titres h2 {
-    font-weight: 400;
-    font-size: 1rem;
-    text-transform: uppercase;
-    margin: 0;
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 /* =========================
 ======== PRINCIPAL =========
 ========================= */
-
-main {
-    min-height: var(--mainMinHeight);
-    padding: 2em 3em;
-}
 
 /* Slider */
 
@@ -218,33 +140,19 @@ main {
 /* Book Page */
 
 #fiche-livre {
-	padding: 1em;
+    margin: 0 auto;
     margin-bottom: 1.5em;
-	border: 1px solid #000;
-	border-radius: 5px;
-	display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
-#fiche-livre > * {
-    padding: .5em;
+#fiche-livre .illustration {
+    width: 50%;
 }
 
-#fiche-livre .illustration,
-#fiche-livre .details-livre {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-}
-
-#fiche-livre .illustration,
-#fiche-livre .illustration img {
+.illustration, .illustration img {
     max-width: 100%;
 }
 
 #fiche-livre .suggestions-livres {
-    grid-column: 1 / span 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -277,46 +185,58 @@ main {
 }
 
 /* =========================
-========== FOOTER ==========
+======== MON PANIER ========
 ========================= */
 
-footer {
-    margin-top: auto;
-    padding: 1em;
+#mon-panier .conteneur {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1.5em;
-    background-color: var(--yellow2);
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
 }
 
-footer h3 {
-    margin-bottom: .5em;
-}
-
-footer ul,
-footer address {
-    margin-left: 33.33%;
-}
-
-footer li {
-    margin-bottom: .33em;
-}
-
-address {
-    font-style: normal;
+#mon-panier .carte-livre {
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border: 1px solid;
+    border-radius: 5px;
 }
 
-address li {
-    display: block;
+#mon-panier .carte-livre > * {
+    width: 100%;
+}
+
+#mon-panier h3, #mon-panier h4 {
+    margin: 0;
+}
+
+#mon-panier h3 {
+    font-size: 1.725rem;
+    padding: .75em;
+    background-color: #1dfb1d;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #000;
+}
+
+#mon-panier h4 {
+    font-size: 1.2rem;
+    padding: .5em;
+}
+
+#mon-panier .illustration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* =========================
 ========== FORMS ===========
 ========================= */
 
-form {
+form:not(form.ajouter-panier) {
     width: 50%;
     margin: 0 auto 1.5em auto;
     padding: 1.5em .75em 0 .75em;
@@ -416,7 +336,6 @@ textarea {
 ========================= */
 
 .acces-refuse {
-    min-height: var(--mainMinHeight);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -432,11 +351,78 @@ textarea {
 }
 
 /* =========================
+========== PROFIL ==========
+========================= */
+
+#profil-u table {
+    border: 1px solid #000;
+    min-width: 50%;
+    margin-bottom: 1.5em;
+}
+
+#profil-u tr {
+    transition: filter .15s linear;
+}
+
+#profil-u tr:hover {
+    /* outline: 1px solid darkgray; */
+    filter: hue-rotate(45deg);
+}
+
+#profil-u tr:not(tr:last-of-type) {
+    border-bottom: 1px solid #000;
+}
+
+#profil-u th,
+#profil-u td {
+    padding: .5em;
+} 
+
+#profil-u th {
+    border-right: 1px solid #000;
+    background-color: teal;
+    color: #fff;
+}
+
+#btn-modifier-profil {
+    color: unset;
+}
+
+#formulaire-modif-profil {
+    background-color: teal;
+    color: #fff;
+}
+
+#formulaire-modif-profil button {
+    margin-right: 1em;
+    background-color: var(--blue1);
+}
+
+#formulaire-modif-profil a {
+    color: #fff;
+}
+
+#formulaire-modif-profil a:hover {
+    color: var(--yellow1);
+}
+
+/* =========================
 ========= CLASSES ==========
 ========================= */
 
 .centrer-texte {
     text-align: center;
+}
+
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contenu {
+    margin: 0 3em;
 }
 
 .conteneur-degrade {
@@ -457,6 +443,7 @@ textarea {
 }
 
 .message-erreur {
+    color: rgb(0,50,255);
     animation: var(--fadeOut);
 }
 
@@ -482,65 +469,42 @@ textarea {
 ========================= */
 
 @media screen and (max-width: 992px) {
-    #bandeau-superieur nav i {
-        display: block;
-    }
-
-    #bandeau-superieur nav ul {
-        display: none;
-        flex-direction: column;
-    }
-
-    #bandeau-superieur nav li {
-        align-items: flex-start;
-    }
-    
-    #bandeau-superieur nav a {
-        text-align: left;
-    }
-
-    /* ===== ===== */
-
-    main {
-        padding: 1em;
-    }
 
     main p {
         font-size: .9em;
     }
 
-    footer, #selection-livres, #fiche-livre {
+    main h2 {
+        font-size: 1.5rem;
+    }
+
+    #selection-livres {
         grid-template-columns: 1fr;
     }
 
-    /* ===== ===== */
-    
-    #fiche-livre .suggestions-livres {
-        grid-column: auto;
-    }
-
-    /* ===== ===== */
-
-    form {
+    form:not(form.ajouter-panier) {
         width: 100%;
     }
 
     /* ===== ===== */
-    
-    #notif-creation-compte {
-        background-size: 50%;
+
+    .contenu {
+        margin: 0 1em;
     }
 
-    /* ===== ===== */
-    
     .acces-refuse p {
         font-size: 3em;
     }
 
     /* ===== ===== */
 
-    footer ul,
-    footer address {
-        margin-left: 0;
+    #fiche-livre .illustration {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #notif-creation-compte {
+        background-size: 75%;
     }
 }

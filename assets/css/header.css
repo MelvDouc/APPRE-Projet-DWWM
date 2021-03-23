@@ -1,0 +1,112 @@
+header a,
+header h1,
+header h2,
+header i {
+    color: var(--white1);
+}
+
+/*  */
+
+#bandeau-superieur {
+    background-color: var(--red1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#bandeau-superieur > * {
+    width: 50%;
+}
+
+#bandeau-superieur a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: .4em;
+}
+
+/*  */
+
+#bandeau-superieur-gauche li,
+#bandeau-superieur-gauche a {
+    width: 100%;
+}
+
+nav i {
+    display: none;
+    font-size: 1.85em;
+    padding: .4em;
+}
+
+nav ul {
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li {
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav li:hover,
+nav a:hover {
+    background-color: blue;
+}
+
+nav a {
+    text-transform: uppercase;
+}
+
+/*  */
+
+#bandeau-superieur-droit ul {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin-right: 1em;
+}
+
+/*  */
+/*  */
+
+#titres {
+    background-color: var(--yellow1);
+    padding: .5em .225em;
+}
+
+#titres img {
+    max-width: 500px;
+}
+
+#titres h1 { /* alt du l'image du logo */
+    font-weight: bold;
+    font-size: 2.5rem;
+    margin-bottom: .25em;
+}
+
+#titres h2 {
+    font-weight: 400;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+@media screen and (max-width: 992px) {
+    #bandeau-superieur nav i {
+        display: block;
+    }
+
+    #bandeau-superieur nav ul {
+        display: none;
+        flex-direction: column;
+    }
+    
+    #bandeau-superieur nav a {
+        text-align: left;
+        justify-content: flex-start;
+    }
+}
